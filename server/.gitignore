@@ -652,3 +652,6 @@ FodyWeavers.xsd
 
 # VS Code Config Directory
 .vscode
+
+# VS Code REST Client File
+requests.http
