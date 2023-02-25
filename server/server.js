@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const HandleError = require('./middlewares/error/error-handler.middleware');
 const UserRoutes = require('./routes/user.routes');
-
+const AdminRoutes = require('./routes/admin.routes');
 
 const App = Express();
 
@@ -14,6 +14,7 @@ App.use(Express.json());
 App.use(Express.urlencoded({ extended: true }));
 
 App.use('/api/v1/auth', UserRoutes);
+App.use('/api/v1/admin', AdminRoutes);
 
 App.use(HandleError);
 
