@@ -78,7 +78,7 @@ module.exports = class UserControllers {
 
     static accessAllUsers = async (req, res, next) => {
         try {
-            if (req.user.role !== -1) return next(HttpError.Unauthorized('You Are Not Authorized For The Action!'));
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
             let users = await UserServices.getAllUsersAsync();
             return res.status(200).json(users);
@@ -90,7 +90,7 @@ module.exports = class UserControllers {
 
     static accessUser = async (req, res, next) => {
         try {
-            if (req.user.role !== -1) return next(HttpError.Unauthorized('You Are Not Authorized For The Action!'));
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
             let user = await UserServices.getUserByIdAsync(req.params.userId);
             return res.status(200).json(user);
@@ -102,11 +102,11 @@ module.exports = class UserControllers {
 
     static grantAdminPrivilege = async (req, res, next) => {
         try {
-            if (req.user.role !== -1) return next(HttpError.Unauthorized('You Are Not Authorized For The Action!'));
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
             let isGranted = await UserServices.makeUserAdminAsync(req.params.userId);
             if (isGranted) {
-                return res.status(200).json({
+                return res.status(204).json({
                     status: 200,
                     message: 'User Granted Admin Privileges!'
                 });
@@ -120,11 +120,11 @@ module.exports = class UserControllers {
 
     static revokeAdminPrivilege = async (req, res, next) => {
         try {
-            if (req.user.role !== -1) return next(HttpError.Unauthorized('You Are Not Authorized For The Action!'));
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
             let isRevoked = await UserServices.removeUserAsAdminAsync(req.params.userId);
             if (isRevoked) {
-                return res.status(200).json({
+                return res.status(204).json({
                     status: 200,
                     message: "User's Admin Privileges Revoked!"
                 });
@@ -138,11 +138,11 @@ module.exports = class UserControllers {
 
     static makeUserApprover = async (req, res, next) => {
         try {
-            if (req.user.role !== -1) return next(HttpError.Unauthorized('You Are Not Authorized For The Action!'));
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
             let isMade = await UserServices.makeUserApproverAsync(req.params.userId);
             if (isMade) {
-                return res.status(200).json({
+                return res.status(204).json({
                     status: 200,
                     message: 'User Is Now An Approver!'
                 });
@@ -156,11 +156,11 @@ module.exports = class UserControllers {
 
     static removeUserAsApprover = async (req, res, next) => {
         try {
-            if (req.user.role !== -1) return next(HttpError.Unauthorized('You Are Not Authorized For The Action!'));
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
             let isRemoved = await UserServices.removeUserAsApproverAsync(req.params.userId);
             if (isRemoved) {
-                return res.status(200).json({
+                return res.status(204).json({
                     status: 200,
                     message: 'User Is No Longer An Approver!'
                 });
