@@ -1,4 +1,5 @@
 const Model = require('../database/models');
+const { Op } = require('sequelize');
 
 module.exports = class UserRepository {
     static createUser = async (creationData) => {
@@ -25,7 +26,9 @@ module.exports = class UserRepository {
 
     static getAllUsers = async () => {
         try {
-            const users = await Model.Users.findAll();
+            const users = await Model.Users.findAll({
+                where: { [Op.or]: [{ role: 0 }, { role: 1 }] }
+            });
             return users;
         }
         catch (err) {
