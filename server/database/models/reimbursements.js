@@ -7,13 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Reimbursements.belongsTo(models.Users, {
         foreignKey: 'userId',
-        as: 'claimingAuthority'
-      });
-
-      Reimbursements.hasOne(models.Receipts, {
-        foreignKey: 'reimbursementId',
-        as: 'attachedReceipt',
-        onDelete: 'CASCADE'
+        as: 'requestedBy'
       });
     }
   }
@@ -27,7 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     requestPhase: DataTypes.STRING,
     isApproved: DataTypes.BOOLEAN,
-    hasReceipt: DataTypes.BOOLEAN
+    approvedBy: DataTypes.STRING,
+    internalNotes: DataTypes.TEXT,
+    receiptName: DataTypes.TEXT,
+    mimeType: DataTypes.TEXT,
+    size: DataTypes.BIGINT
   }, {
     sequelize,
     modelName: 'Reimbursements',
