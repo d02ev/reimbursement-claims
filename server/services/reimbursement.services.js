@@ -7,7 +7,6 @@ module.exports = class ReimbursementServices {
                 date: creationData.date,
                 reimbursementType: creationData.reimbursementType,
                 requestedValue: creationData.requestedValue,
-                requestedBy: creationData.requestedBy,
                 currency: creationData.currency,
                 receiptAttached: creationData.receiptAttached,
                 receiptName: creationData.receiptName,
@@ -109,16 +108,12 @@ module.exports = class ReimbursementServices {
             const response = await ReimbursementRepository.editReimbursement(reimbursementId, {
                 date: modifiedData.date,
                 reimbursementType: modifiedData.reimbursementType,
-                requestedValue: modifiedData.reimbursementType,
-                requestedBy: modifiedData.requestedBy,
+                requestedValue: modifiedData.requestedValue,
                 currency: modifiedData.currency,
-                receiptAttached: modifiedData.receiptAttached,
                 receiptAttached: modifiedData.receiptAttached,
                 receiptName: modifiedData.receiptName,
                 mimeType: modifiedData.mimeType,
                 size: modifiedData.size,
-                userId: modifiedData.userId,
-                hasReceipt: modifiedData.hasReceipt
             });
             if (response) return true;
             return false;

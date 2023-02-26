@@ -7,7 +7,6 @@ module.exports = class ReimbursementRepository {
                 date: creationData.date,
                 reimbursementType: creationData.reimbursementType,
                 requestedValue: creationData.requestedValue,
-                requestedBy: creationData.requestedBy,
                 currency: creationData.currency,
                 receiptAttached: creationData.receiptAttached,
                 receiptName: creationData.receiptName,
@@ -150,16 +149,12 @@ module.exports = class ReimbursementRepository {
             const updatedData = {
                 date: modifiedData.date,
                 reimbursementType: modifiedData.reimbursementType,
-                requestedValue: modifiedData.reimbursementType,
-                requestedBy: modifiedData.requestedBy,
+                requestedValue: modifiedData.requestedValue,
                 currency: modifiedData.currency,
-                receiptAttached: modifiedData.receiptAttached,
                 receiptAttached: modifiedData.receiptAttached,
                 receiptName: modifiedData.receiptName,
                 mimeType: modifiedData.mimeType,
                 size: modifiedData.size,
-                userId: modifiedData.userId,
-                hasReceipt: modifiedData.hasReceipt,
             };
             const response = await Model.Reimbursements.update(updatedData, {
                 where: { id: reimbursementId },
