@@ -655,3 +655,6 @@ FodyWeavers.xsd
 
 # VS Code REST Client File
 requests.http
+
+# Receipt Upload Folder
+uploads
