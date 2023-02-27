@@ -21,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   private _setError(err: HttpErrorResponse): void {
     if (err.error instanceof ErrorEvent) this._errorMessage = err.error.message;
     else {
-      if (err.status !== 0) this._errorMessage = err.error;
+      if (err.status !== 0) this._errorMessage = err.error.message;
     }
   }
 
