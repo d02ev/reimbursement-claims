@@ -1,1 +1,137 @@
-<p>register works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/" routerLinkActive="active">ReimbursementClaim</a>
+        <div class="navbar-nav">
+            <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Login</a>
+            <a class="nav-link" routerLink="/auth/register" routerLinkActive="active">Register</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="container">
+        <div *ngIf="isSuccess" class="alert alert-success fade show m-3" role="alert">
+            {{ successResponse }}
+        </div>
+        <div *ngIf="isError" class="alert alert-danger fade show m-3" role="alert">
+            {{ errorResponse }}
+        </div>
+        <div class="card m-3">
+            <div class="card-header">
+                <h3 class="mb-0">
+                   Register
+                </h3>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label>Full Name</label>
+                            <input type="text" formControlName="fullName" class="form-control" />
+                            <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+                                class="text-danger">
+                                <div *ngIf="fullName.errors.required">
+                                    Name is required!
+                                </div>
+                                <div *ngIf="fullName.errors.pattern">
+                                    Name can only contain alphabets!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Email</label>
+                            <input type="text" formControlName="email" class="form-control" />
+                            <div *ngIf="email.invalid && (email.touched || email.dirty)" class="text-danger">
+                                <div *ngIf="email.errors.required">
+                                    Email is required!
+                                </div>
+                                <div *ngIf="email.errors.email">
+                                    Not a valid email address!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>PAN</label>
+                        <input type="text" formControlName="PAN" class="form-control" />
+                        <div *ngIf="PAN.invalid && (PAN.touched || PAN.dirty)"
+                            class="text-danger">
+                            <div *ngIf="PAN.errors.required">
+                                PAN Number Is Required!
+                            </div>
+                            <div *ngIf="PAN.errors.pattern">
+                                Not a valid PAN number! It contains 5 starting alphabets, 4 numbers and 1 ending alphabet
+                                only!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <label>Bank</label>
+                            <select formControlName="bankName" class="form-select">
+                                <option value=""></option>
+                                <option value="HDFC Bank Pvt. Ltd.">HDFC Bank Pvt. Ltd.</option>
+                                <option value="Canara Bank Pvt. Ltd.">Canara Bank Pvt. Ltd.</option>
+                                <option value="Axis Bank Pvt. Ltd.">Axis Bank Pvt. Ltd.</option>
+                                <option value="Kotak Mahindra Bank Pvt. Ltd.">Kotak Mahindra Bank Pvt. Ltd.</option>
+                            </select>
+                            <div *ngIf="bankName.invalid && (bankName.touched || bankName.dirty)" class="text-danger">
+                                <div *ngIf="bankName.errors.required">
+                                    Select a bank!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Bank Account Number</label>
+                            <input type="text" formControlName="bankAccountNumber" class="form-control" />
+                            <div *ngIf="bankAccountNumber.invalid && (bankAccountNumber.touched || bankAccountNumber.dirty)"
+                                class="text-danger">
+                                <div *ngIf="bankAccountNumber.errors.required">
+                                    Bank account number is required!
+                                </div>
+                                <div *ngIf="bankAccountNumber.errors.pattern">
+                                    Bank account number must be 12 characters long and must only contain numbers!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" class="form-control" />
+                            <div *ngIf="password.invalid && (password.touched || password.dirty)"
+                                class="text-danger">
+                                <div *ngIf="password.errors.required">
+                                    Password is required!
+                                </div>
+                                <div *ngIf="password.errors.pattern">
+                                    Password must contain at least 1 special character, 1 number and 1 alphabet and must be
+                                    8 characters long!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Confirm Password</label>
+                            <input type="password" formControlName="confirmPassword" class="form-control" />
+                            <div *ngIf="confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty)"
+                                class="text-danger">
+                                <div *ngIf="confirmPassword.errors.required">
+                                    Confirm password is required!
+                                </div>
+                                <div *ngIf="confirmPassword.hasError('matching')">
+                                    Passwords do not match!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary me-2" [disabled]="registrationForm.invalid">Register</button>
+                        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                Already A User? <a routerLink="/auth/login" routerLinkActive="active">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
