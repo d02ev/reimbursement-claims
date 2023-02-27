@@ -17,7 +17,7 @@ module.exports = class UserControllers {
                 password: req.body.password,
                 confirmPassword: req.body.confirmPassword
             });
-            if (validationResponse.error) return next(HttpError.Conflict(validationResponse.error.details));
+            if (validationResponse.error) return next(HttpError.Conflict('There Are Some Validation Errors On Your Fields!'));
             if (await UserServices.getUserByEmailAsync(req.body.email)) return next(HttpError.BadRequest('User Already Exists!'));
 
             let passwordSalt = BcryptJS.genSaltSync(10);
