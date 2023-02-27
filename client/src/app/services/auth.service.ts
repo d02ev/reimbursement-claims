@@ -70,5 +70,6 @@ export class AuthService {
 
   public logoutUser(): void {
     sessionStorage.removeItem('authToken');
+    window.location.reload();
   };
 }
