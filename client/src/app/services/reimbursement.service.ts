@@ -35,7 +35,7 @@ export class ReimbursementService {
     return this._httpClient.get(`${this._baseUrl}/:${claimId}`);
   }
 
-  public accessClaimCreatedByUser(): Observable<any> {
+  public accessClaimsCreatedByUser(userId: any): Observable<any> {
     return this._httpClient.get(this._baseUrl + '/user');
   }
 
