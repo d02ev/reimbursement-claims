@@ -13,6 +13,7 @@ import { ReimbursementService } from './services/reimbursement.service';
 import { TokenInterceptor } from './services/token.interceptor';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { ErrorService } from './services/error.service';
+import { UserHomeComponent } from './user-home/user-home.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ErrorService } from './services/error.service';
     DefaultHomeComponent,
     LoginComponent,
     RegisterComponent,
+    UserHomeComponent,
   ],
   imports: [
     BrowserModule,
