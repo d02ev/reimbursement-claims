@@ -81,9 +81,9 @@ module.exports = class ReimbursementServices {
         }
     };
 
-    static approveReimbursementAsync = async (reimbursementId, approvedValue, internalNotes, approvedBy) => {
+    static approveReimbursementAsync = async (reimbursementId, approvingData) => {
         try {
-            const response = await ReimbursementRepository.approveReimbursement(reimbursementId, approvedValue, internalNotes, approvedBy);
+            const response = await ReimbursementRepository.approveReimbursement(reimbursementId, approvingData);
             if (response) return true;
             return false;
         }

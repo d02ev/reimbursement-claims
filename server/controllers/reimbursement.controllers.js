@@ -111,7 +111,8 @@ module.exports = class ReimbursementControllers {
         try {
             if (req.user.role === 0 || req.user.isApprover) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
-            const response = await ReimbursementServices.approveReimbursementAsync(req.params.reimbursementId, req.body.approvedValue, req.body.internalNotes, req.user.email);
+            let approvingData = req.body;
+            const response = await ReimbursementServices.approveReimbursementAsync(req.params.reimbursementId, approvingData);
             if (response) {
                 return res.status(204).json({
                     status: 204,

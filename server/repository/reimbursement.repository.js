@@ -106,8 +106,12 @@ module.exports = class ReimbursementRepository {
         }
     };
 
-    static approveReimbursement = async (reimbursementId, approvedValue, internalNotes, approvedBy) => {
+    static approveReimbursement = async (reimbursementId, approvingData) => {
         try {
+            let approvedValue = approvingData.approvedValue;
+            let internalNotes = approvingData.internalNotes;
+            let approvedBy = approvingData.approvedBy;
+
             const reimbursement = await Model.Reimbursements.update({
                 requestPhase: 'Approved',
                 isApproved: true,
