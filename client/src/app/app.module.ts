@@ -14,6 +14,10 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { ErrorService } from './services/error.service';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { CreateReimbursementComponent } from './reimbursements/create-reimbursement/create-reimbursement.component';
+import { EditReimbursementComponent } from './reimbursements/edit-reimbursement/edit-reimbursement.component';
+import { ApproveReimbursementComponent } from './reimbursements/approve-reimbursement/approve-reimbursement.component';
+import { DeclineReimbursementComponent } from './reimbursements/decline-reimbursement/decline-reimbursement.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { UserHomeComponent } from './user-home/user-home.component';
     LoginComponent,
     RegisterComponent,
     UserHomeComponent,
+    CreateReimbursementComponent,
+    EditReimbursementComponent,
+    ApproveReimbursementComponent,
+    DeclineReimbursementComponent,
   ],
   imports: [
     BrowserModule,
