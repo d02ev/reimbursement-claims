@@ -3,7 +3,7 @@ const Path = require('path');
 
 const uploadImage = Multer({
     storage: Multer.diskStorage({
-        destination: './uploads/receipts',
+        destination: './public',
         filename: (req, file, cb) => {
             return cb(
                 null,
