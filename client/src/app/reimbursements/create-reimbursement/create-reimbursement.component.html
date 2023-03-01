@@ -1,0 +1,79 @@
+<div class="container">
+    <div *ngIf="isSuccess" class="alert alert-success fade show m-3" role="alert">
+        {{ successResponse }}
+    </div>
+    <div *ngIf="isError" class="alert alert-danger fade show m-3" role="alert">
+        {{ errorResponse }}
+    </div>
+    <div class="card m-3">
+        <div class="card-header">
+            <h3 class="mb-0 text-center">
+                New Claim
+            </h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="claimCreationForm" (ngSubmit)="onSubmit()">
+                <div class="form-group mb-2">
+                    <label>Date</label>
+                    <input type="date" formControlName="date" class="form-control" />
+                    <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                        class="text-danger">
+                        <div *ngIf="date.errors.required">
+                            Date is required!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label>Reimbursement Type</label>
+                    <select formControlName="reimbursementType" class="form-select">
+                        <option value=""></option>
+                        <option value="Medical">Medical</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Food">Food</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Misc">Misc</option>
+                    </select>
+                    <div *ngIf="reimbursementType.invalid && (reimbursementType.touched || reimbursementType.dirty)"
+                        class="text-danger">
+                        <div *ngIf="reimbursementType.errors.required">
+                            Reimbursement type is required!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label>Requested Value</label>
+                    <input type="number" formControlName="requestedValue" class="form-control" />
+                    <div *ngIf="requestedValue.invalid && (requestedValue.dirty || requestedValue.touched)"
+                        class="text-danger">
+                        <div *ngIf="requestedValue.errors.required">
+                            Requested value is required!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label>Currency</label>
+                    <select formControlName="currency" class="form-select">
+                        <option value=""></option>
+                        <option value="INR">INR</option>
+                        <option value="USD">USD</option>
+                        <option value="EURO">EURO</option>
+                    </select>
+                    <div *ngIf="currency.invalid && (currency.touched || currency.dirty)"
+                        class="text-danger">
+                        <div *ngIf="currency.errors.required">
+                            Currency is required!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label>Attach Receipt</label>
+                    <input type="file" (change)="onFileSelected($event)" class="form-control" />
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary me-2" [disabled]="claimCreationForm.invalid">Create</button>
+                    <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
