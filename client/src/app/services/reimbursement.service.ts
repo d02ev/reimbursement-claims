@@ -12,7 +12,14 @@ export class ReimbursementService {
 
   // public methods
   public generateClaim(claimData: any): Observable<any> {
-    return this._httpClient.post(this._baseUrl, claimData);
+    const dataToSend = new FormData();
+    dataToSend.append('date', claimData.date);
+    dataToSend.append('reimbursementType', claimData.reimbursementType);
+    dataToSend.append('requestedValue', claimData.requestedValue);
+    dataToSend.append('currency', claimData.currency);
+    dataToSend.append('receipt', claimData.receipt);
+
+    return this._httpClient.post(this._baseUrl, dataToSend);
   }
 
   public accessAllClaims(): Observable<any> {
@@ -32,23 +39,39 @@ export class ReimbursementService {
   }
 
   public accessClaimById(claimId: any): Observable<any> {
-    return this._httpClient.get(`${this._baseUrl}/:${claimId}`);
+    return this._httpClient.get(`${this._baseUrl}/${claimId}`);
   }
 
   public accessClaimsCreatedByUser(userId: any): Observable<any> {
-    return this._httpClient.get(this._baseUrl + '/user');
+    return this._httpClient.get(this._baseUrl + '/user/claims');
   }
 
   public approveClaim(claimId: any, approvingData: any): Observable<any> {
-    return this._httpClient.patch(`${this._baseUrl}/approve/${claimId}`, approvingData);
+    return this._httpClient.patch(
+      `${this._baseUrl}/approve/${claimId}`,
+      approvingData
+    );
   }
 
   public declineClaim(claimId: any, decliningData: any): Observable<any> {
-    return this._httpClient.patch(`${this._baseUrl}/decline/${claimId}`, decliningData);
+    return this._httpClient.patch(
+      `${this._baseUrl}/decline/${claimId}`,
+      decliningData
+    );
   }
 
   public editClaim(claimId: any, modifiedData: any): Observable<any> {
-    return this._httpClient.patch(`${this._baseUrl}/edit/${claimId}`, modifiedData);
+    const dataToSend = new FormData();
+    dataToSend.append('date', modifiedData.date);
+    dataToSend.append('reimbursementType', modifiedData.reimbursementType);
+    dataToSend.append('requestedValue', modifiedData.requestedValue);
+    dataToSend.append('currency', modifiedData.currency);
+    dataToSend.append('receipt', modifiedData.receipt);
+
+    return this._httpClient.patch(
+      `${this._baseUrl}/edit/${claimId}`,
+      dataToSend
+    );
   }
 
   public deleteClaim(claimId: any): Observable<any> {
