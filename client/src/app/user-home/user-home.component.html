@@ -39,12 +39,20 @@
                 <td>{{ reimbursement.reimbursementType }}</td>
                 <td>{{ reimbursement.requestedValue }}</td>
                 <td>{{ reimbursement.approvedValue }}</td>
-                <td>{{ reimbursement.currency }}</td>
+                <td *ngIf="reimbursement.currency===0">
+                    INR
+                </td>
+                <td *ngIf="reimbursement.currency===1">
+                    USD
+                </td>
+                <td *ngIf="reimbursement.currency===2">
+                    EURO
+                </td>
                 <td>{{ reimbursement.requestPhase }}</td>
-                <td>{{ reimbursement.receiptAttached }}</td>
+                <td><a href="http://localhost:5000/{{reimbursement.receiptAttached}}" target="_blank">{{ reimbursement.receiptAttached }}</a></td>
                 <td>
                     <button type="button" class="btn btn-secondary me-2"
-                        routerLink="/user/edit/{{reimbursement.reimbursementEntityId}}">
+                        routerLink="/user/edit/{{reimbursement.id}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path
@@ -54,7 +62,7 @@
                         </svg>
                     </button>
                     <button type="button" class="btn btn-danger"
-                        (click)="deleteReimbursementClaim(reimbursement.reimbursementEntityId)">
+                        (click)="deleteReimbursementClaim(reimbursement.id)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-trash3" viewBox="0 0 16 16">
                             <path
