@@ -41,6 +41,17 @@ export class LoginComponent implements OnInit {
           this.isError = false;
         }, 5000);
       },
+      complete: () => {
+        if (!(this._authService.isAdmin() || this._authService.isSuperAdmin())) {
+          this._router.navigate(['user/dashboard'])
+        }
+        else if (this._authService.isAdmin()) {
+          this._router.navigate(['admin/dashboard'])
+        }
+        else if (this._authService.isSuperAdmin()) {
+          this._router.navigate(['super-admin/dashboard'])
+        }
+      }
     });
   }
 }
