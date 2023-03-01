@@ -1,5 +1,6 @@
 const Express = require('express');
 const CORS = require('cors');
+const Path = require('path');
 
 require('dotenv').config();
 
@@ -13,6 +14,7 @@ const App = Express();
 App.use(CORS());
 App.use(Express.json());
 App.use(Express.urlencoded({ extended: true }));
+App.use(Express.static(Path.join(__dirname, 'public')));
 
 App.use('/api/v1/auth', UserRoutes);
 App.use('/api/v1/admin', AdminRoutes);
