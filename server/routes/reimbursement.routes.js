@@ -9,7 +9,7 @@ Router.route('/pending').get(AuthMiddleware, ReimbursementControllers.accessPend
 Router.route('/approved').get(AuthMiddleware, ReimbursementControllers.accessApprovedClaims);
 Router.route('/declined').get(AuthMiddleware, ReimbursementControllers.accessDeclinedClaims);
 Router.route('/:reimbursementId').get(AuthMiddleware, ReimbursementControllers.accessClaim);
-Router.route('/user').get(AuthMiddleware, ReimbursementControllers.accessUserClaims);
+Router.route('/user/claims').get(AuthMiddleware, ReimbursementControllers.accessUserClaims);
 Router.route('/approve/:reimbursementId').patch(AuthMiddleware, ReimbursementControllers.approveClaim);
 Router.route('/decline/:reimbursementId').patch(AuthMiddleware, ReimbursementControllers.declineClaim);
 Router.route('/edit/:reimbursementId').patch(AuthMiddleware, UploadImage.single('receipt'), ReimbursementControllers.editClaim);
