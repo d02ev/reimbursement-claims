@@ -89,7 +89,7 @@ module.exports = class ReimbursementControllers {
 
             if (req.user.id !== userId) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
 
-            const response = await ReimbursementServices.getReimbursementByIdAsync(req.parama.reimbursementId);
+            const response = await ReimbursementServices.getReimbursementByIdAsync(req.params.reimbursementId);
             return res.status(200).json(response);
         }
         catch (err) {
