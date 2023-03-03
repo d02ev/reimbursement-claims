@@ -21,6 +21,9 @@ import { DeclineReimbursementComponent } from './reimbursements/decline-reimburs
 import { HomeComponent } from './admin/home/home.component';
 import { ApprovedReimbursementsComponent } from './admin/approved-reimbursements/approved-reimbursements.component';
 import { DeclinedReimbursementsComponent } from './admin/declined-reimbursements/declined-reimbursements.component';
+import { AdminsComponent } from './super-admin/admins/admins.component';
+import { ApproversComponent } from './super-admin/approvers/approvers.component';
+import { SuperAdminHomeComponent } from './super-admin/super-admin-home/super-admin-home.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { DeclinedReimbursementsComponent } from './admin/declined-reimbursements
     HomeComponent,
     ApprovedReimbursementsComponent,
     DeclinedReimbursementsComponent,
+    AdminsComponent,
+    ApproversComponent,
+    SuperAdminHomeComponent,
   ],
   imports: [
     BrowserModule,
