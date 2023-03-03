@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand">ReimbursementClaim</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/super-admin/dashboard/approvers" routerLinkActive="active">Approvers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/super-admin/dashboard/admins" routerLinkActive="active">Admins</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav d-flex justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link">{{userEmail}}</a>
+            </li>
+        </ul>
+        <form class="d-flex justify-content-end">
+            <button class="btn btn-primary me-2" type="button" (click)="logout()">Logout</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div *ngIf="isError" class="alert alert-danger fade show m-3" role="alert">
+        {{ errorResponse }}
+    </div>
+    <div class="text-center mb-3 mt-2 fs-2">
+        Registered Users
+    </div>
+    <table class="table table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">PAN</th>
+                <th scope="col">Bank Name</th>
+                <th scope="col">Bank Account Number</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td> {{ user.fullName }} </td>
+                <td> {{ user.email }} </td>
+                <td> {{ user.PAN }} </td>
+                <td> {{ user.bankName }} </td>
+                <td> {{ user.bankAccountNumber }} </td>
+                <td>
+                    <button type="button" class="btn btn-primary me-2" (click)="makeUserAdmin(user.id)">Make Admin</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
