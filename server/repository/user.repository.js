@@ -27,7 +27,34 @@ module.exports = class UserRepository {
     static getAllUsers = async () => {
         try {
             const users = await Model.Users.findAll({
-                where: { [Op.or]: [{ role: 0 }, { role: 1 }] }
+                where: { 
+                    [Op.or]: [{ role: 0 }, { role: 1 }],
+                    [Op.and]: [{ isAdmin: false }, { isApprover: false }]
+                }
+            });
+            return users;
+        }
+        catch (err) {
+            console.error('DB Error: ' + err);
+        }
+    };
+
+    static getAllApprovers = async () => {
+        try {
+            const users = await Model.Users.findAll({
+                where: { [Op.and]: [{ isApprover: true }, { [Op.or]: [{ role: 0 }, { role: 1 }] }] }
+            });
+            return users;
+        }
+        catch (err) {
+            console.error('DB Error: ' + err);
+        }
+    };
+
+    static getAllAdmins = async () => {
+        try {
+            const users = await Model.Users.findAll({
+                where: { [Op.and]: [{ isAdmin: true }, { [Op.or]: [{ role: 0 }, { role: 1 }] }] }
             });
             return users;
         }

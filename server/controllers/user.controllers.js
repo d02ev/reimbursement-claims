@@ -88,6 +88,30 @@ module.exports = class UserControllers {
         }
     };
 
+    static accessAllApprovers = async (req, res, next) => {
+        try {
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
+
+            let users = await UserServices.getAllApproversAsync();
+            return res.status(200).json(users);
+        }
+        catch (err) {
+            return next(HttpError.InternalServerError);
+        }
+    };
+
+    static accessAllAdmins = async (req, res, next) => {
+        try {
+            if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));
+
+            let users = await UserServices.getAllAdminsAsync();
+            return res.status(200).json(users);
+        }
+        catch (err) {
+            return next(HttpError.InternalServerError);
+        }
+    };
+
     static accessUser = async (req, res, next) => {
         try {
             if (req.user.role !== -1) return next(HttpError.Forbidden("You Don't Have Rights To Access The Resources!"));

@@ -31,6 +31,26 @@ module.exports = class UserServices {
         }
     };
 
+    static getAllApproversAsync = async () => {
+        try {
+            const users = await UserRepository.getAllApprovers();
+            return users;
+        }
+        catch (err) {
+            console.error('Service Error: ' + err);
+        }
+    };
+
+    static getAllAdminsAsync = async () => {
+        try {
+            const users = await UserRepository.getAllAdmins();
+            return users;
+        }
+        catch (err) {
+            console.error('Service Error: ' + err);
+        }
+    };
+
     static getUserByIdAsync = async (userId) => {
         try {
             const user = await UserRepository.getUserById(userId);
