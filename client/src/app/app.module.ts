@@ -18,6 +18,9 @@ import { CreateReimbursementComponent } from './reimbursements/create-reimbursem
 import { EditReimbursementComponent } from './reimbursements/edit-reimbursement/edit-reimbursement.component';
 import { ApproveReimbursementComponent } from './reimbursements/approve-reimbursement/approve-reimbursement.component';
 import { DeclineReimbursementComponent } from './reimbursements/decline-reimbursement/decline-reimbursement.component';
+import { HomeComponent } from './admin/home/home.component';
+import { ApprovedReimbursementsComponent } from './admin/approved-reimbursements/approved-reimbursements.component';
+import { DeclinedReimbursementsComponent } from './admin/declined-reimbursements/declined-reimbursements.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { DeclineReimbursementComponent } from './reimbursements/decline-reimburs
     EditReimbursementComponent,
     ApproveReimbursementComponent,
     DeclineReimbursementComponent,
+    HomeComponent,
+    ApprovedReimbursementsComponent,
+    DeclinedReimbursementsComponent,
   ],
   imports: [
     BrowserModule,
