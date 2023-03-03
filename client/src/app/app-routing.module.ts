@@ -7,11 +7,15 @@ import { RegisterComponent } from './auth/register/register.component';
 import { DefaultHomeComponent } from './default-home/default-home.component';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { SuperAdminGuard } from './guards/super-admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { ApproveReimbursementComponent } from './reimbursements/approve-reimbursement/approve-reimbursement.component';
 import { CreateReimbursementComponent } from './reimbursements/create-reimbursement/create-reimbursement.component';
 import { DeclineReimbursementComponent } from './reimbursements/decline-reimbursement/decline-reimbursement.component';
 import { EditReimbursementComponent } from './reimbursements/edit-reimbursement/edit-reimbursement.component';
+import { AdminsComponent } from './super-admin/admins/admins.component';
+import { ApproversComponent } from './super-admin/approvers/approvers.component';
+import { SuperAdminHomeComponent } from './super-admin/super-admin-home/super-admin-home.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 
 const routes: Routes = [
@@ -57,6 +61,21 @@ const routes: Routes = [
     path: 'admin/dashboard/declined',
     component: DeclineReimbursementComponent,
     canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'super-admin/dashboard',
+    component: SuperAdminHomeComponent,
+    canActivate: [AuthGuard, SuperAdminGuard],
+  },
+  {
+    path: 'super-admin/dashboard/admins',
+    component: AdminsComponent,
+    canActivate: [AuthGuard, SuperAdminGuard],
+  },
+  {
+    path: 'super-admin/dashboard/approvers',
+    component: ApproversComponent,
+    canActivate: [AuthGuard, SuperAdminGuard],
   },
 ];
 
